@@ -1,54 +1,70 @@
-/* body{
-  margin : 0;
-  padding :0;
-  box-sizing: border-box;
-  overflow: hidden;
-  
-} */
-.sidebar{
-  height: 100vh;
-  background: rgb(2, 51, 65);
-  width: 16%;
+.sidebar{ 
+    display: flex;
+    padding: 20px;  
+    margin: 20px;
+    flex-direction: column; 
+    column-gap: 120px;    
+    background: rgba(160, 190, 184, 0.271);
+    height: 100vh;
 }
-
-.survey_list {
-  margin-block:120px ;
-  list-style: none;
+body {
+    overflow: hidden;
 }
-
+.container {    
+    display: grid;
+    grid-template-columns: 1fr 5fr;     
+}
+.navigation {   
+    background:#fff;
+    padding: 20px; 
+    margin: 20px; 
+}
 .survey__item {
-  padding-block: 20px ;
-  color: #fff;
-}
-.main {
-  width: 84%;
-  height: 100vh;
-  background: #fffefe;
-}
-.container {
-  display: flex;
-  position: relative;
-}
-/* 
-.create {  
-  display: flex;
-  flex-direction: column;
-  position: absolute; 
-  left: 50%;
-  transform:  translateX(-40%);
-  padding: 25px;
-  gap: 25px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #000;
+    font-size: 30px;
 }
 
+.create {
+    background: rgba(160, 190, 184, 0.271);
+    margin:20px;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-self: center;
+    flex-direction: column;    
+}
+.create__title {
+    text-align: center;
+    text-transform: capitalize;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 0.326px;
+}
 .create__input {
-  width:200%;
-  height: 45px;
-  margin-left: -50%;
-  border: none;
-  background: #eceaea;
+    width: 40%;
+    height: 50px;
+    align-self: center;
 }
-
-.create__add_btn  {
-  width: 50%;
-  margin-right: 50%;
-} */
+.create__add_btn {
+    width: 20%;
+    height: 50px;
+    align-self: center;
+}
+.content {
+   
+}
+.section-title {
+     margin: 20px;
+    font-size: 25px;
+    font-weight: 400;    
+    text-shadow: 2px 2px rgba(160, 190, 184, 0.271);
+}
+.question-list {
+    font-size: 19px;
+    font-weight: 100;
+    list-style: none;
+}

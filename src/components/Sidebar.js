@@ -8,14 +8,16 @@ export const Sidebar = () => {
             <div className="logo">
                 <h3>T - <span>Master</span></h3>
             </div>
-            <ul className='survey_list'>
-              {
-
-              }
-                <li className='survey__item'> <Link to={"/dashboard"}>Dashboard</Link></li>
-                <li className='survey__item'><Link to={"/questionnaire"}>Questionnaire</Link></li>
-                <li className='survey__item' ><Link to = {"/"}>Create</Link></li>
-            </ul>
+            <div className="navigation">
+              <Link className="survey__item " to={"/dashboard"}>Dashboard</Link>
+            </div>
+            <div className="navigation">
+              <Link className="survey__item " to={"/questionnaire"}>Questionnaire</Link>
+            </div>
+            <div className="navigation">
+            <Link className="survey__item "  to = {"/"}>Create</Link>
+            </div>
+          
     </div>
   )
 }

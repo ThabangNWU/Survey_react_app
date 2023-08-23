@@ -1,46 +1,68 @@
-import {useState} from 'react'
+import { useState } from 'react';
+import { Question } from './Question';
+
 
 export const QuestionnaireContent = () => {
-    const vraag = Object.keys(localStorage);
-    const [selectedValue, setSelectedValue] = useState("");
-    
-    const onChangeValue = (event) => {
-        setSelectedValue(event.target.value);
-        console.log(event.target.value);
-      };
+  const vraag = Object.keys(localStorage);
+  const [selectedValue, setSelectedValue] = useState([]);
 
 
-    return (
-        <div className="main">
-            <div className="list_question">
-            <h3>Questionnaire</h3>
-            <ul> 
-                {
-                    (
-                        vraag.map((question, key) => {
-                            const questionObj = JSON.parse(localStorage.getItem(question))
-                            return (
-                                <div onChange={onChangeValue}>
-                                    <li key={key} >
-                                <p>{questionObj.question} <input type="radio"  value="Agree" name="answerOption" /> Agree
-                                    <input type="radio" value="Neutral" name="answerOption" /> Neutral
-                                    <input type="radio" value="Disagree" name="answerOption" /> Disagree</p>                              
-                                
-                                    
-                                
-                               
-                            </li>
-                                </div>
-                            
-                            )
-                        })
-                    )
-                }
-              
+  const submitAnswer = (event) => {
+    event.preventDefault();
+  
+    vraag.forEach((questionId, index) => {
+      const answerId = `${localStorage.length}_${index}`;
+      localStorage.setItem(
+        answerId,
+        JSON.stringify({ answerId, answer: selectedValue[index], questionId })
+      );
+    });
+  
+   
+    setSelectedValue(new Array(vraag.length).fill(''));
+  };
+  
+
+  const onChangeValue = (event, questionIndex) => {
+    const newSelectedValue = [...selectedValue];
+    newSelectedValue[questionIndex] = event.target.value;
+    setSelectedValue(newSelectedValue);
+  };
+  
+  return (
+    <>
+     
+     <form onSubmit={submitAnswer} >
+      <div className="main">
+        <div className="list_question">
+          <h3>Questionnaire</h3>
+          <ul>
+            {vraag.map((questionId) => {
+              const questionObj = JSON.parse(localStorage.getItem(questionId));             
+              return (
+                questionObj.question !== undefined && 
+                localStorage.length !== 0 ?
+                <Question
+                  key={questionId}
+                  questionObj={questionObj}
+                  questionId={questionId}
+                  onChange={(event) => onChangeValue(event, vraag.indexOf(questionId))}
+                />
+                : "" 
                 
-            </ul>
-            <p>Selected value: {selectedValue}</p>
+                
+                                
+              );
+            })}
+          </ul>          
         </div>
-        </div>
-    )
-}
+      </div>
+
+      
+      <button>submit</button>
+     </form>
+    </>
+   
+ 
+  );
+};
