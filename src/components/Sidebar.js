@@ -1,21 +1,30 @@
-import { useState } from "react"
 import { Link } from "react-router-dom";
+import {MdDashboardCustomize,MdCreate} from 'react-icons/md'
+import {RiQuestionnaireFill} from 'react-icons/ri'
+import me from '../images/me.jpg'
+
 
 export const Sidebar = () => {
-  const [navigationState, setNavigationState] = useState();
+  
   return (
     <div className="sidebar">
-            <div className="logo">
-                <h3>T - <span>Master</span></h3>
+            <div className="profile">
+              <img className="profile__image" src= {me} alt="profile image"></img>
+              <div>
+                <h3>Thabang Lebele</h3>
+                <p>Software Developer</p>
+                <hr></hr>
+              </div>
+            </div>
+            
+            <div className="navigation">
+              <Link className="survey__item " to={"/dashboard"}><MdDashboardCustomize className="icons"/><p>Dashboard</p></Link>
             </div>
             <div className="navigation">
-              <Link className="survey__item " to={"/dashboard"}>Dashboard</Link>
+              <Link className="survey__item " to={"/questionnaire"}><RiQuestionnaireFill className="icons"/><p>Questionnaire</p></Link>
             </div>
             <div className="navigation">
-              <Link className="survey__item " to={"/questionnaire"}>Questionnaire</Link>
-            </div>
-            <div className="navigation">
-            <Link className="survey__item "  to = {"/"}>Create</Link>
+            <Link className="survey__item "  to = {"/"}><MdCreate className="icons"/><p>Create</p></Link>
             </div>
           
     </div>

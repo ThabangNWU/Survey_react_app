@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-
+import { MdModeEditOutline, MdDelete } from 'react-icons/md';
 
 const useQuestionList = () => {
   const [questions, setQuestions] = useState(Object.keys(localStorage));
 
   const deleteQuestion = (questionId) => {
     localStorage.removeItem(questionId);
-    setQuestions((prevQuestions) => prevQuestions.filter((question) => question !== questionId));
+    setQuestions((prevQuestions) =>
+      prevQuestions.filter((question) => question !== questionId)
+    );
   };
 
   return { questions, deleteQuestion };
@@ -18,7 +20,10 @@ const QuestionItem = ({ questionId, deleteQuestion }) => {
 
   const toggleEditing = () => {
     if (editing) {
-      localStorage.setItem(questionId, JSON.stringify({ question: editedQuestion }));
+      localStorage.setItem(
+        questionId,
+        JSON.stringify({ question: editedQuestion })
+      );
     }
     setEditing(!editing);
   };
@@ -40,14 +45,12 @@ const QuestionItem = ({ questionId, deleteQuestion }) => {
           </>
         ) : (
           <>
-            {console.log(questionObj.question)}
-            <p className="question-text">{questionObj.question }</p>
-            <button className="edit-button" onClick={toggleEditing}>
-              Edit
-            </button>
-            <button className="delete-button" onClick={() => deleteQuestion(questionId)}>
-              Delete
-            </button>
+            <p className="question-text">{questionObj.question}</p>
+            <MdModeEditOutline className="edit-button" onClick={toggleEditing} />
+            <MdDelete
+              className="delete-button"
+              onClick={() => deleteQuestion(questionId)}
+            />
           </>
         )}
       </li>
@@ -62,16 +65,22 @@ export const ListQuestions = () => {
   const { questions, deleteQuestion } = useQuestionList();
 
   return (
-    <div className="centered-container">
-      <div className="content">
+ 
+      <>
         <h3 className="section-title">List of Questions</h3>
         <ul className="question-list">
-          {questions.map((questionId) => (
-            <QuestionItem key={questionId} questionId={questionId} deleteQuestion={deleteQuestion} />
-          ))}
+       
+          {questions
+            .filter((questionId) => !questionId.includes('_')) // Filter out answers
+            .map((questionId) => (
+              <QuestionItem
+                key={questionId}
+                questionId={questionId}
+                deleteQuestion={deleteQuestion}
+              />
+            ))}
         </ul>
-      </div>
-      
-    </div>
+      </>
+  
   );
 };

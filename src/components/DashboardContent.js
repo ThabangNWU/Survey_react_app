@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { Sidebar } from './Sidebar';
 export const DashboardContent = () => {
     const [totalNumOfQuestion, setTotalNumOfQuestion] = useState(0);
     const [totalAgree, setTotalAgree] = useState(0);
@@ -39,27 +39,56 @@ export const DashboardContent = () => {
         setTotalNeutral(totalNum);
     }, []);
 
+    
+
     return (
        <>
-       <div className="content">
-             <div>
-                <p>Number of Questions</p>
-                <h3>{totalNumOfQuestion}</h3>
-            </div>
-            <div>
-                <p>Agreements</p>
-                <h3>{totalAgree}</h3>
-            </div>
-            <div>
-                <p>Disagreeements</p>
-                <h3>{totalDisagree}</h3>
-            </div>
-            <div>
-                <p>Nuetral</p>
-                <h3>{totalNeutral}</h3>
-            </div>
-       </div>
+        <div className='container'>
+            <div className='wrapper'>
+                <div className='dashboard15'> 
+                    <Sidebar/>
+                </div>
+                
+                <div  className='dashboard85'> 
+                <div className='topbar'>
+                            <div className="topbar__log">
+                                <h3>T - <span>Master</span></h3>
+                            </div>
+                            <div className='topbar__heading'>                
+                                <h1>Dashboard</h1>
+                            </div>
+                </div>                                   
+                <div className=' dashdaord__col6 dashboard__3 '>
+                       <div className='dashboard_total dashboard--color-1'>
+                        <p>Number of Questions</p>
+                        <h3>{totalNumOfQuestion}</h3>
+                       </div>
+                       <div className='dashboard_total dashboard--color-2'>
+                           <p>Agreements</p>
+                            <h3>{totalAgree}</h3>
+                        </div>
+                        <div className='dashboard_total dashboard--color-3'>
+                            <p>Disagreements</p>
+                            <h3>{totalDisagree}</h3>
+                            
+                           </div>
+                           <div className='dashboard_total dashboard--color-4'>
+                            <p>Nuetral</p>
+                            <h3>{totalNeutral}</h3>
+                        
+                        </div>
+                    </div>
+                
+                    
+                     
+                    
+                </div>
+        </div>
+    </div> 
+            
+      
        
        </>
     );
 };
+
